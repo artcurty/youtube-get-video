@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Change the Quality</title>
+    <link rel="stylesheet" href="../static/styles.css">
+</head>
+<body>
+<h1>Change the Quality</h1>
+<form action="/download" method="post">
+    <input type="hidden" name="url" value="{{.URL}}">
+    <label for="format">Quality:</label>
+    <select id="format" name="format">
+        {{range .Formats}}
+        {{if .QualityLabel}}
+        <option value="{{.ItagNo}}">
+            {{ .QualityLabel}} - {{if gt .AudioChannels 0}}🎵 With Audio{{else}}🔇 Without Audio{{end}}
+        </option>
+        {{end}}
+        {{end}}
+    </select>
+    <br>
+    <button type="submit">Download</button>
+    <br>
+    <img src="{{.Thumbnail}}" alt="Thumbnail" class="thumbnail">
+</form>
+
+</body>
+</html>
